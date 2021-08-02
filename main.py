@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from tkinter import *
+from pygame import mixer
 from math import floor
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -16,11 +17,19 @@ reps = 0
 timer = None
 
 
+# ---------------------------- Break Sound ------------------------------- #
+def play_alarm():
+    mixer.init()
+    mixer.music.load('iPhone_radar.wav')
+    mixer.music.play(loops=0)
+
+
 # ---------------------------- TIMER RESET ------------------------------- #
 def reset_timer():
     global reps
     screen.after_cancel(timer)
     canvas.itemconfig(counter_text, text="0:00")
+    checkmarks.config(text="")
     label1.config(text='Timer')
     reps = 0
 
@@ -30,17 +39,19 @@ def mechanism():
     global reps
     reps += 1
 
-    work_sec = WORK_MIN * 60
-    short_br_sec = SHORT_BREAK_MIN * 60
-    long_br_sec = LONG_BREAK_MIN * 60
+    work_sec = WORK_MIN #* 60
+    short_br_sec = SHORT_BREAK_MIN #* 60
+    long_br_sec = LONG_BREAK_MIN #* 60
 
     if reps % 8 == 0:
         count_down(long_br_sec)
         label1.config(fg=RED, text='Break')
-        # checkmarks.config(text="")
+        checkmarks.config(text="")
+        play_alarm()
     elif reps % 2 == 0:
         count_down(short_br_sec)
         label1.config(fg=PINK, text="Break")
+        play_alarm()
     else:
         count_down(work_sec)
         label1.config(fg=GREEN, text='Work')
