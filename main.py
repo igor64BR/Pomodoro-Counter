@@ -2,7 +2,7 @@ from tkinter import *
 from pygame import mixer
 from math import floor
 # ---------------------------- CONSTANTS ------------------------------- #
-music_file_location = 'iPhone_radar.wav'
+music_file_location = '/home/baiocco/a100DoC/day-28-pomodoro_counter/iPhone_radar.wav'
 # OBS.: Go to your alarm sound's properties and copy and paste it's location above
 
 PINK = "#e2979c"
@@ -106,7 +106,7 @@ checkmarks = Label(text="", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 20, "bold"))
 checkmarks.grid(column=2, row=4)
 
 canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
-tomato_pic = PhotoImage(file="tomato.png")
+tomato_pic = PhotoImage(file="/home/baiocco/a100DoC/day-28-pomodoro_counter/tomato.png")
 canvas.create_image(100, 112, image=tomato_pic)
 counter_text = canvas.create_text(100, 140, text="0:00", fill="white", font=(FONT_NAME, 40, "bold"))
 canvas.grid(column=2, row=2)
