@@ -2,7 +2,7 @@ from tkinter import *
 from pygame import mixer
 from math import floor
 # ---------------------------- CONSTANTS ------------------------------- #
-music_file_location = '/home/baiocco/a100DoC/day-28-pomodoro_counter/iPhone_radar.wav'
+music_file_location = './iPhone_radar.wav'
 # OBS.: Go to your alarm sound's properties and copy and paste it's location above
 
 PINK = "#e2979c"
