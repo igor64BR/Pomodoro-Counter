@@ -3,6 +3,7 @@ from pygame import mixer
 from math import floor
 # ---------------------------- CONSTANTS ------------------------------- #
 music_file_location = './iPhone_radar.wav'
+notification_file_location = './iphone_14_notification.mp3'
 # OBS.: Go to your alarm sound's properties and copy and paste it's location above
 
 PINK = "#e2979c"
@@ -25,6 +26,11 @@ def play_alarm():
     mixer.music.play(loops=0)
     stop_music_button.config(state=NORMAL)
 
+def play_break_end():
+    mixer.init()
+    mixer.music.load(notification_file_location)
+    mixer.music.play(loops=0)
+
 def stop_music():
     mixer.music.stop()
     stop_music_button.config(state=DISABLED)
@@ -38,6 +44,7 @@ def reset_timer():
     checkmarks.config(text="")
     label1.config(text='Timer')
     reps = 0
+    stop_music()
 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
@@ -61,6 +68,7 @@ def mechanism():
     else:
         count_down(work_sec)
         label1.config(fg=GREEN, text='Work')
+        play_break_end()
 
     if reps % 9 == 0 or reps == 0:
         checkmarks.config(text="")
