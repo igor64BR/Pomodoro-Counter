@@ -23,6 +23,11 @@ def play_alarm():
     mixer.init()
     mixer.music.load(music_file_location)
     mixer.music.play(loops=0)
+    stop_music_button.config(state=NORMAL)
+
+def stop_music():
+    mixer.music.stop()
+    stop_music_button.config(state=DISABLED)
 
 
 # ---------------------------- TIMER RESET ------------------------------- #
@@ -102,6 +107,10 @@ start_button.grid(column=1, row=3)
 reset_button = Button(text="Reset", width=5)
 reset_button.grid(column=3, row=3)
 
+stop_music_button = Button(text="Stop Music", width=10)
+stop_music_button.grid(column=2, row=5)
+stop_music_button.config(state=DISABLED)
+
 checkmarks = Label(text="", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 20, "bold"))
 checkmarks.grid(column=2, row=4)
 
@@ -112,5 +121,6 @@ counter_text = canvas.create_text(100, 140, text="0:00", fill="white", font=(FON
 canvas.grid(column=2, row=2)
 start_button.config(command=start_count_down)
 reset_button.config(command=reset_timer)
+stop_music_button.config(command=stop_music)
 
 screen.mainloop()
