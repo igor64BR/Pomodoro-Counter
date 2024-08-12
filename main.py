@@ -44,6 +44,7 @@ def reset_timer():
     checkmarks.config(text="")
     label1.config(text='Timer')
     reps = 0
+    start_button.config(state=NORMAL)
     stop_music()
 
 
@@ -96,7 +97,7 @@ def count_down(count):
 
 
 def start_count_down():
-    # count = WORK_MIN * 60
+    start_button.config(state=DISABLED)
     mechanism()
 
 
